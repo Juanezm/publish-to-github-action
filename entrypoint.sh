@@ -6,6 +6,10 @@ if [ -z "${GITHUB_TOKEN}" ]; then
     exit 1
 fi
 
+if [ -z "${BRANCH}" ]; then
+    BRANCH=master
+fi
+
 # initialize git
 remote_repo="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 git config http.sslVerify false
@@ -22,5 +26,5 @@ git lfs install
 git checkout master
 git add -A
 git commit -m "${COMMIT_MSG}" || exit 0
-git pull --rebase publisher master
-git push publisher master
+git pull --rebase publisher ${BRANCH}
+git push publisher ${BRANCH}
