@@ -23,7 +23,7 @@ git branch --verbose
 git lfs install
 
 # publish any new files
-git checkout master
+git checkout ${BRANCH}
 git add -A
 git commit -m "${COMMIT_MSG}" || exit 0
 git pull --rebase publisher ${BRANCH}
